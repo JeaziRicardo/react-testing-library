@@ -1,5 +1,6 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import renderWithRouter from '../renderWithRouter';
 import App from '../App';
 
@@ -12,5 +13,16 @@ describe('Testa o componente <App.js />', () => {
       const link = screen.getByRole('link', { name: nav });
       return (expect(link).toBeInTheDocument());
     });
+  });
+
+  test('Testa o redirecionamento para página inicial ao clicar no link Home', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const homeLink = screen.getByRole('link', { name: 'Home' });
+    expect(homeLink).toBeInTheDocument();
+    userEvent.click(homeLink);
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/');
   });
 });
