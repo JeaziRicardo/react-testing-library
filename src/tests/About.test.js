@@ -20,4 +20,11 @@ describe('Testa o componente <About.js />', () => {
     expect(paragraphsOne).toBeInTheDocument();
     expect(paragraphsTwo).toBeInTheDocument();
   });
+
+  test('Testa se a página contém a seguinte imagem de uma Pokédex', () => {
+    renderWithRouter(<About />);
+    const src = 'https://cdn2.bulbagarden.net/upload/thumb/8/86/Gen_I_Pok%C3%A9dex.png/800px-Gen_I_Pok%C3%A9dex.png';
+    const image = screen.getByRole('img');
+    expect(image).toHaveAttribute('src', src);
+  });
 });
