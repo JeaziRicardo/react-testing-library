@@ -47,4 +47,14 @@ describe('Testa o componente <App.js />', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/favorites');
   });
+
+  test('Testa o redirecionamento ao entrar em uma URL desconhecida', () => {
+    const { history } = renderWithRouter(<App />);
+
+    history.push('/pagina/que-nao-existe/');
+
+    const notFoundTitle = screen.getByRole('heading',
+      { level: 2, name: /page requested not found/i });
+    expect(notFoundTitle).toBeInTheDocument();
+  });
 });
