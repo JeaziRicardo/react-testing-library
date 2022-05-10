@@ -10,4 +10,11 @@ describe('Testa o componente <NotFound.js />', () => {
       { level: 2, name: /page requested not found/i });
     expect(notFoundTitle).toBeInTheDocument();
   });
+
+  test('Testa se a página mostra uma imagem específica', () => {
+    renderWithRouter(<NotFound />);
+    const src = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
+    const images = screen.getAllByRole('img');
+    expect(images[1]).toHaveAttribute('src', src);
+  });
 });
