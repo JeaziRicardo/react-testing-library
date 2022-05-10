@@ -36,4 +36,15 @@ describe('Testa o componente <App.js />', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/about');
   });
+
+  test('Testa o redirecionamento para página favoritos no link Favorite Pokémons', () => {
+    const { history } = renderWithRouter(<App />);
+
+    const favoritesLink = screen.getByRole('link', { name: 'Favorite Pokémons' });
+    expect(favoritesLink).toBeInTheDocument();
+    userEvent.click(favoritesLink);
+
+    const { pathname } = history.location;
+    expect(pathname).toBe('/favorites');
+  });
 });
