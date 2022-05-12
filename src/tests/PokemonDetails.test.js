@@ -38,4 +38,16 @@ describe('Testa o componente <PokemonDetails.js />', () => {
     expect(imageLocations[1]).toHaveAttribute('alt', 'Pikachu location');
     expect(imageLocations[2]).toHaveAttribute('alt', 'Pikachu location');
   });
+
+  test('Testa se o usuário pode favoritar um pokémon na página de detalhes', () => {
+    renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: /More details/i });
+    userEvent.click(moreDetails);
+
+    const checkBox = screen.getByRole('checkbox');
+    expect(checkBox).toBeInTheDocument();
+
+    const checkLabel = screen.getByLabelText('Pokémon favoritado?');
+    expect(checkLabel).toBeInTheDocument();
+  });
 });
