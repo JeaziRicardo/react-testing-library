@@ -31,5 +31,11 @@ describe('Testa o componente <PokemonDetails.js />', () => {
     const titleLocations = screen.getByRole('heading',
       { level: 2, name: 'Game Locations of Pikachu' });
     expect(titleLocations).toBeInTheDocument();
+
+    const imageLocations = screen.getAllByRole('img');
+    expect(imageLocations[1]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/0/08/Kanto_Route_2_Map.png');
+    expect(imageLocations[2]).toHaveAttribute('src', 'https://cdn2.bulbagarden.net/upload/b/bd/Kanto_Celadon_City_Map.png');
+    expect(imageLocations[1]).toHaveAttribute('alt', 'Pikachu location');
+    expect(imageLocations[2]).toHaveAttribute('alt', 'Pikachu location');
   });
 });
