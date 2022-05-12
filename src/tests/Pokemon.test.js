@@ -10,8 +10,8 @@ describe('Teste o componente <Pokemon.js />', () => {
     const pokémonName = screen.getByText('Pikachu');
     expect(pokémonName).toBeInTheDocument();
 
-    const pokémonType = screen.getAllByText('Electric');
-    expect(pokémonType[0]).toBeInTheDocument();
+    const pokémonType = screen.getByTestId('pokemon-type');
+    expect(pokémonType).toHaveTextContent('Electric');
 
     const averageWeight = screen.getByText('Average weight: 6.0 kg');
     expect(averageWeight).toBeInTheDocument();
