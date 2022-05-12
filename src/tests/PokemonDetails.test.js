@@ -22,4 +22,14 @@ describe('Testa o componente <PokemonDetails.js />', () => {
     const summary = screen.getByText(/this intelligent Pokémon roasts hard/i);
     expect(summary).toBeInTheDocument();
   });
+
+  test('Testa se existe uma seção contendo as localizações do pokémon', () => {
+    renderWithRouter(<App />);
+    const moreDetails = screen.getByRole('link', { name: 'More details' });
+    userEvent.click(moreDetails);
+
+    const titleLocations = screen.getByRole('heading',
+      { level: 2, name: 'Game Locations of Pikachu' });
+    expect(titleLocations).toBeInTheDocument();
+  });
 });
