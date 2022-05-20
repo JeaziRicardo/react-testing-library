@@ -32,4 +32,24 @@ describe('Testa o componente <Pokedex.js />', () => {
     userEvent.click(btnNext);
     expect(quantity).toHaveLength(1);
   });
+
+  test('Testa se a Pokédex tem os botões de filtro', () => {
+    renderWithRouter(<App />);
+    const types = ['Electric', 'Fire', 'Bug', 'Poison', 'Psychic',
+      'Normal', 'Dragon'];
+    const btnNext = screen.getByRole('button', { name: /próximo/i });
+    const btnAll = screen.getByRole('button', { name: 'All' });
+    types.forEach((type) => {
+      const btnType = screen.getByRole('button', { name: type });
+      expect(btnType).toBeInTheDocument();
+      userEvent.click(btnType);
+      
+      expect(btnAll).toBeInTheDocument();
+      const typeAndBtn = screen.getAllByText(type);
+      expect(typeAndBtn).toHaveLength(2);
+      userEvent.click(btnNext);
+      expect(btnAll).toBeInTheDocument();
+      expect(typeAndBtn).toHaveLength(2);
+    });
+  });
 });
